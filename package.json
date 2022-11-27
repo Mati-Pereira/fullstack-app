@@ -1,9 +1,14 @@
 {
-  "private": true,
+  "author": "Matheus Rodrigues Pereira",
+  "license": "MIT",
   "scripts": {
+    "private": true,
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "prod": "next build && next start",
+    "start-docker": "docker compose up",
+    "stop-docker": "docker compose down"
   },
   "dependencies": {
     "next": "latest",
