@@ -1,5 +1,7 @@
+import axios from "axios";
 import type { NextPage } from "next";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type Inputs = {
@@ -8,12 +10,15 @@ type Inputs = {
 };
 
 const index: NextPage = () => {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    axios.post('/api/login', data)
+  };
   return (
     <div className="flex justify-center items-center h-screen ">
       <div className="border-2 p-16 rounded">

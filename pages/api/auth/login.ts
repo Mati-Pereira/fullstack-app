@@ -9,5 +9,12 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: "John Doe" });
+  if (!req.body) {
+    res.statusCode = 404;
+    res.end("Error");
+    return;
+  }
+  if (req.method === "POST") {
+    console.log(req.body);
+  }
 }

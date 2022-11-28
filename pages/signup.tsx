@@ -1,3 +1,4 @@
+import axios from "axios";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -13,7 +14,9 @@ const signup: NextPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    axios.post('/api/auth/register', data).then(() => alert("Usuário enviado"))
+  };
   return (
     <div className="flex justify-center items-center h-screen  ">
       <div className="border-2 p-16 rounded">
