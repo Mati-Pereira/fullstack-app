@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgres://root:root@127.0.0.1:5432"
 }
 
 model Users {
@@ -18,7 +18,7 @@ model Users {
 model Accounts {
   id                 Int            @id @default(autoincrement())
   balance            Float          @default(100)
-  Users              Users?         
+  Users              Users?
   DebitedTrasaction  Transactions[] @relation("debited")
   CreditedTransation Transactions[] @relation("credited")
 }
