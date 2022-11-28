@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 
-const index: NextPage = () => {
+const signup: NextPage = () => {
   return (
     <div className="flex justify-center items-center h-screen  ">
       <form className="border-2 p-16 rounded">
@@ -44,12 +44,12 @@ const index: NextPage = () => {
             placeholder="Password" />
         </div>
         <button type="submit" className="px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Submit</button>
-        <p className="text-gray-800 mt-6 text-center">Not a member? <Link href="/signup"
-          className="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out">Register</Link>
+        <p className="text-gray-800 mt-6 text-center">Already a member? <Link href="/"
+          className="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out">Signin</Link>
         </p>
       </form>
     </div>
   );
 }
 
-export default index;
+export default signup;
