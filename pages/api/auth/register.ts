@@ -7,7 +7,13 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method !== "POST") {
-    res.json({ message: "Método não peremitido" });
+    return res.json({ message: "Método não peremitido" });
+  }
+  const isUserAlreadyExists = await prisma.users.findFirst({
+    where: { username: req.body.username },
+  });
+  if (isUserAlreadyExists) {
+    return res.json({ message: "Usuário já existe" });
   }
   const hashedPassword = await hash(req.body.password, 8);
   const account = prisma.accounts.create({
