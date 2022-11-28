@@ -1,9 +1,9 @@
-version: '3'
+version: "3"
 
 services:
-  app: 
+  app:
     image: trybe-app
-    build: 
+    build:
       dockerfile: Dockerfile
       context: ./
     ports:
@@ -21,4 +21,3 @@ services:
       - POSTGRES_DB=root
     ports:
       - 5432:5432
-    
