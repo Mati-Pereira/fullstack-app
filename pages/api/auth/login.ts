@@ -1,20 +1,26 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { compare } from "bcryptjs";
 import type { NextApiRequest, NextApiResponse } from "next";
+import prisma from "../../../lib/prisma";
 
-type Data = {
-  name: string;
-};
-
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
-  if (!req.body) {
-    res.statusCode = 404;
-    res.end("Error");
-    return;
+  if (req.method !== "POST") {
+    return res.json({ message: "Método não permitido" });
   }
-  if (req.method === "POST") {
-    console.log(req.body);
+  let user = await prisma.users.findUnique({
+    where: {
+      username: req.body.username,
+    },
+  });
+  if (!user) {
+    user = { username: "", password: "", accountId: 0, id: 0 };
+  }
+  const isPasswordMatch = await compare(req.body.password, user.password);
+  if (!user || !isPasswordMatch) {
+    return res.json({ message: "Usuário e/ou senha incorretos" });
+  } else {
+    return res.json({ message: "Usuário logado com sucesso" });
   }
 }

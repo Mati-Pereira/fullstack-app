@@ -32,6 +32,6 @@ export default async function handler(
       res.json({ message: "Usuário criado com sucesso" });
     })
     .catch((e) => {
-      res.json({ message: e.message });
+      res.json({ message: "Erro no cadastro do usuário" });
     });
 }
