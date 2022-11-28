@@ -8,17 +8,17 @@ datasource db {
 }
 
 model Users {
-  id         Int       @id @default(autoincrement())
-  username   String    @unique
+  id         Int      @id @default(autoincrement())
+  username   String   @unique
   password   String
-  accountsId Accounts? @relation(fields: [accountId], references: [id])
-  accountId  Int       @unique
+  accountsId Accounts @relation(fields: [accountId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  accountId  Int      @unique
 }
 
 model Accounts {
   id                 Int            @id @default(autoincrement())
   balance            Float          @default(100)
-  Users              Users?
+  Users              Users?         
   DebitedTrasaction  Transactions[] @relation("debited")
   CreditedTransation Transactions[] @relation("credited")
 }

@@ -4,28 +4,28 @@ import prisma from "../../../lib/prisma";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>
+  res: NextApiResponse
 ) {
-  if (!req.body) {
-    res.statusCode = 404;
-    res.end("Error");
-    return;
+  if (req.method !== "POST") {
+    res.json({ message: "Método não peremitido" });
   }
+  const hashedPassword = await hash(req.body.password, 8);
+  const account = prisma.accounts.create({
+    data: {},
+  });
 
-  if (req.method === "POST") {
-    const checkUserExist = await prisma.users.findFirst({
-      where: req.body.username,
-    });
-    if (checkUserExist) {
-      res.json({ message: "Usuário já existe" });
-    }
-    const hashedPassoword = await hash(req.body.password, 8);
-    await prisma.users.create({
+  await prisma.users
+    .create({
       data: {
         username: req.body.username,
-        password: hashedPassoword,
+        password: hashedPassword,
+        accountId: (await account).id,
       },
+    })
+    .then(() => {
+      res.json({ message: "Usuário criado com sucesso" });
+    })
+    .catch((e) => {
+      res.json({ message: e.message });
     });
-    return res.status(201).json({ message: "Usuário criado com sucesso" });
-  }
 }

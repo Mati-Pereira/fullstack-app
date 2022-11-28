@@ -9,7 +9,7 @@
     "prod": "next build && next start",
     "start-docker": "docker compose up",
     "stop-docker": "docker compose down",
-    "migration": "prisma migrate deploy",
+    "migration": "prisma migrate dev --name fixContraint1",
     "prettier": "prettier --write ."
   },
   "dependencies": {
