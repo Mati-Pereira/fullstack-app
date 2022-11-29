@@ -1,7 +1,6 @@
 import axios from "axios";
 import type { NextPage } from "next";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type Inputs = {
@@ -10,7 +9,6 @@ type Inputs = {
 };
 
 const index: NextPage = () => {
-  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -34,21 +32,7 @@ const index: NextPage = () => {
             <input
               type="text"
               minLength={3}
-              className="form-control
-        block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="username"
               aria-describedby="username"
               placeholder="Enter username"
@@ -65,20 +49,7 @@ const index: NextPage = () => {
             <input
               type="password"
               minLength={6}
-              className="form-control block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border- border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="exampleInputPassword1"
               placeholder="Password"
               {...register("password", { required: true })}
