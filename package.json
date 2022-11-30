@@ -8,7 +8,7 @@
     "start": "next start",
     "prod": "yarn migrate && next build && next start",
     "migrate": "prisma migrate deploy",
-    "start-docker": "docker compose up",
+    "start-docker": "docker-compose up compose.yml docker-compose.yml -d -f",
     "stop-docker": "docker compose down",
     "prettier": "prettier --write ."
   },
