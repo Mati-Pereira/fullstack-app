@@ -1,15 +1,18 @@
 version: "3"
 
+volumes:
+  data:
+
 services:
-  db:
-    image: postgres:14.1-alpine
-    container_name: postgres_container
-    restart: always
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=postgrespw
     ports:
-      - '5432:5432'
-    volumes: 
-      - db:/var/lib/postgresql/data
-      - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - 5432:5432
+    volumes:
+      - data:/var/lib/postgresql
+
   app:
     image: trybe-app
     build:
@@ -21,7 +24,4 @@ services:
     environment:
       NODE_ENV: production
     links:
-      - db
-volumes:
-  db:
-    driver: local
+      - postgres
