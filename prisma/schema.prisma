@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgres://postgres:postgrespw@postgres:5432"
+  url      = "postgres://root:root@postgres:5432/pg_container?schema=public"
 }
 
 model Users {

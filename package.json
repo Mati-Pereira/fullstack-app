@@ -6,11 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "prod": "yarn migrate && next build && next start",
-    "migrate": "prisma migrate deploy",
-    "start-docker": "docker-compose up compose.yml docker-compose.yml -d -f",
-    "stop-docker": "docker compose down",
-    "prettier": "prettier --write ."
+    "database": "docker compose up -d",
+    "app": "docker build -t app . && docker run -dp 3000:3000 app",
+    "start-d": "npm run database && npm run app"
   },
   "dependencies": {
     "@prisma/client": "4.6.1",
